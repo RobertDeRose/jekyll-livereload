@@ -1,3 +1,5 @@
+require_relative 'configuration'
+
 # Allows us to add more option parameter to the serve command
 module Mercenary
   class Command
@@ -15,6 +17,8 @@ end
 module Jekyll
   module Livereload
     module Serve
+      include Livereload::Configuration
+
       def init_with_program(prog)
         prog.command(:serve) do |c|
           c.option 'livereload', '-L', '--livereload', 'Inject Livereload.js and run a WebSocket Server'
@@ -25,8 +29,12 @@ module Jekyll
       end
 
       def process(opts)
-        Livereload.reactor = Livereload::Reactor.new(opts)
-        Livereload.reactor.start
+        opts = load_config_options(opts)
+        if opts['livereload']
+          Livereload.reactor = Livereload::Reactor.new(opts)
+          Livereload.reactor.start
+        end
+
         super opts
       end
     end

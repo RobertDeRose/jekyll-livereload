@@ -1,5 +1,7 @@
 # Jekyll::Livereload
 
+[![Gem Version](https://badge.fury.io/rb/jekyll-livereload.svg)](https://badge.fury.io/rb/jekyll-livereload)
+
 Adds Livereloading support to Jekyll
 
 ## Installation
@@ -35,6 +37,18 @@ that two new options have been added.
 
 These options have been added by this plugin.
 
+## Making Livereload the default
+
+Jekyll::Livereload supports readings configuration values from your local `_config.yml`
+file. If you always what to use Livereload, and why wouldn't you, you can add it to 
+your config like so:
+
+```yaml
+# Server Config optiosn
+livereload: true    # You no longer need to include --livereload
+reload_port: 5678    # If you don't want to use the default port
+```
+
 ## Caveats
 
 This plugin is dependent on the way Jekyll loads plugins.
@@ -43,7 +57,7 @@ includes `jekyll` and `mercenary`, both of which need to be modified before
 Jekyll initializes it's command line options.
 
 If you attempt to use this plugin by installing it in the `_plugin` directory
-or by adding it to your `_config.yaml` file, it will not work.
+or by adding it to your `_config.yml` file, it will not work.
 
 This plugin will break if Jekyll upstream every changes the placement of the call
 `Jekyll::PluginManager.require_from_bundler` in it's `binary` command `jekyll` to
