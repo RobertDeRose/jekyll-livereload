@@ -40,14 +40,33 @@ These options have been added by this plugin.
 ## Making Livereload the default
 
 Jekyll::Livereload supports readings configuration values from your local `_config.yml`
-file. If you always what to use Livereload, and why wouldn't you, you can add it to 
+file. If you always what to use Livereload, and why wouldn't you, you can add it to
 your config like so:
 
 ```yaml
-# Server Config optiosn
+# Server Config options
 livereload: true    # You no longer need to include --livereload
 reload_port: 5678    # If you don't want to use the default port
 ```
+
+## HTTPS Support
+
+Jekyll 3.1+ added support for running the `server` command with HTTPS support.
+If you include the command line switches `--ssl-cert` and `--ssl-key` to point to
+a PEM based Certificate and Key file, then both Jekyll's WebBrick instance and the
+Livereload Websocket instance will be started with HTTPS enabled.
+
+If you use a self-signed certificate, then you will probably have errors unless
+you tell your browser to **trust** this certificate for both instances.
+
+You will need to visit both the Jekyll serve address and the Livereload address
+in your browser and tell them to allow the connection. This works fine with Chrome.
+
+For Safari you will need to click **Show Certificate** and then click the checkbox
+**Always trust "<certificate name>" when connecting to "127.0.0.1"**
+Where <certificate name> is what you entered when creating the certificate.
+
+Not tested with other browsers, I assume the process is similar to one of the above.
 
 ## Caveats
 
