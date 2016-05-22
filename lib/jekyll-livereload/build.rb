@@ -32,7 +32,8 @@ module Jekyll
 
       private
       def reload_script(opts)
-        "<script src=\"http://#{opts['host']}:#{opts['reload_port']}/livereload.js\"></script>"
+        protocol = opts[:secure] ? "https" : "http"
+        "<script src=\"#{protocol}://#{opts['host']}:#{opts['reload_port']}/livereload.js\"></script>"
       end
 
     end

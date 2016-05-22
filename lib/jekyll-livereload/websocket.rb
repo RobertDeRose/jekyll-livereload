@@ -37,8 +37,8 @@ module Jekyll
       attr_reader :reload_file
 
       def initialize(opts)
-        super
         @reload_file = File.join(LIVERELOAD_DIR, "livereload.js")
+        super opts
       end
 
       def dispatch(data)
@@ -85,7 +85,6 @@ module Jekyll
         @thread = nil
         @websockets = []
         @connections_count = 0
-        trap("INT") { stop }
       end
 
       def stop
@@ -101,9 +100,9 @@ module Jekyll
         @thread = Thread.new do
           # Use epoll if the kernel supports it
           EM.epoll
-          # TODO enable SSL
           EM.run do
-            Jekyll.logger.info("LiveReload Server:", "#{@opts['host']}:#{@opts['reload_port']}")
+            protocol = @opts[:secure] ? "https" : "http"
+            Jekyll.logger.info("LiveReload Server:", "#{protocol}://#{@opts['host']}:#{@opts['reload_port']}")
             EM.start_server(@opts['host'], @opts['reload_port'], HttpAwareConnection, @opts) do |ws|
               ws.onopen do |handshake|
                 connect(ws, handshake)
