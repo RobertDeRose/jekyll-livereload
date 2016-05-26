@@ -1,3 +1,9 @@
+## 0.2.1 / 2016-05-25
+
+## Fix bad build
+
+  * Changes to gemspec accidently removed the required js files
+
 ## 0.2.0 / 2016-05-22
 
 ### Add HTTPS support
