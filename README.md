@@ -40,12 +40,12 @@ These options have been added by this plugin.
 ## Making Livereload the default
 
 Jekyll::Livereload supports readings configuration values from your local `_config.yml`
-file. If you always what to use Livereload, and why wouldn't you, you can add it to
-your config like so:
+file. If you always what to use Livereload, and why wouldn't you, you can add it somewhere
+in your config file like so:
 
 ```yaml
 # Server Config options
-livereload: true    # You no longer need to include --livereload
+livereload: true     # You no longer need to include --livereload
 reload_port: 5678    # If you don't want to use the default port
 ```
 
@@ -78,7 +78,7 @@ Jekyll initializes it's command line options.
 If you attempt to use this plugin by installing it in the `_plugin` directory
 or by adding it to your `_config.yml` file, it will not work.
 
-This plugin will break if Jekyll upstream every changes the placement of the call
+This plugin will break if Jekyll upstream ever changes the placement of the call
 `Jekyll::PluginManager.require_from_bundler` in it's `binary` command `jekyll` to
 be after the initialization it's command line options.
 
@@ -89,8 +89,9 @@ This is the reason this plugin only works if you include it in the `Gemfile`
 A big thanks to [Alex Wood](https://github.com/awood)! This plugin was
 inspired by his [Hawkins](https://github.com/awood/hawkins) plugin for Jekyll.
 The reason I made this plugin was because his method did not work with the
-Github-Pages Gem version of Jekyll, which still uses version 3.0.5.
-His websocket server was used with very little modification and credit given.
+Github-Pages Gem version of Jekyll, which still used version 3.0.5 at the time
+of writing. His websocket server is used with very little modification and
+credit is given.
 
 Also thanks to the [Livereload Team](https://github.com/livereload), a copy of
-their awesome opensource livereload.js is included with this plugin.
+their awesome open source livereload.js is included with this plugin.
