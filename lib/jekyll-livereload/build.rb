@@ -9,7 +9,7 @@ module Jekyll
 
       def process(opts)
         opts = load_config_options(opts)
-        if opts['livereload']
+        if opts['livereload'] and opts['serving']
 
           Jekyll::Hooks.register(:site, :post_render) do |site|
             regenerator = Jekyll::Regenerator.new(site)
