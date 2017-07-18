@@ -19,7 +19,8 @@ module Jekyll
           end
 
           Jekyll::Hooks.register([:pages, :documents], :post_render) do |doc|
-            doc.output.sub!(/<head>(.*)<\/head>/m, "<head>\\1#{reload_script(opts)}</head>")
+            # Insert the reload_script before </head> and attempt to indent correctly
+            doc.output.sub!(%r{(\s*)(?=</head>)},   "\n\\1  #{reload_script(opts)}\\1")
           end
 
           Jekyll::Hooks.register :site, :post_write do
