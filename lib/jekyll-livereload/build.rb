@@ -18,7 +18,7 @@ module Jekyll
             end
           end
 
-          Jekyll::Hooks.register([:pages, :documents], :post_render) do |doc|
+          Jekyll::Hooks.register(:documents, :post_render) do |doc|
             doc.output.sub!(/<head>(.*)<\/head>/m, "<head>\\1#{reload_script(opts)}</head>")
           end
 
