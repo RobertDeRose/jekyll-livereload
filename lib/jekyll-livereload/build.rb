@@ -9,7 +9,7 @@ module Jekyll
 
       def process(opts)
         opts = load_config_options(opts)
-        if opts['livereload'] and opts['serving']
+        if opts['livereload'] && opts['serving']
 
           Jekyll::Hooks.register(:site, :post_render) do |site|
             regenerator = Jekyll::Regenerator.new(site)
@@ -22,8 +22,10 @@ module Jekyll
             doc.output.sub!(/<head>(.*)<\/head>/m, "<head>\\1#{reload_script(opts)}</head>")
           end
 
-          Jekyll::Hooks.register :site, :post_write do
-            Livereload.reactor.reload() unless Livereload.reactor.nil?
+          Jekyll::Hooks.register :site, :post_write, :priority => 1 do
+            unless Livereload.reactor.nil?
+              Livereload.reactor.reload()
+            end
           end
         end
 
@@ -35,7 +37,6 @@ module Jekyll
         protocol = opts[:secure] ? "https" : "http"
         "<script src=\"#{protocol}://#{opts['host']}:#{opts['reload_port']}/livereload.js\"></script>"
       end
-
     end
   end
 end
