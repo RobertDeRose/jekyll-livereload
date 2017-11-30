@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/jekyll-livereload.svg)](https://badge.fury.io/rb/jekyll-livereload)
 
-Adds Livereloading support to Jekyll
+Adds Livereloading support to Jekyll. For more information, see http://livereload.com/.
 
 ## Installation
 
