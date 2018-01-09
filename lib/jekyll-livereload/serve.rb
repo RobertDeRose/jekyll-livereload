@@ -21,6 +21,7 @@ module Jekyll
 
       def init_with_program(prog)
         prog.command(:serve) do |c|
+          c.option 'livereload_host', '-LH', '--livereload_host', 'Host to serve live-reload on'
           c.option 'livereload', '-L', '--livereload', 'Inject Livereload.js and run a WebSocket Server'
           c.option 'reload_port', '-R', '--reload_port [PORT]', Integer, 'Port to serve Livereload on'
         end

@@ -102,7 +102,7 @@ module Jekyll
           EM.epoll
           EM.run do
             protocol = @opts[:secure] ? "https" : "http"
-            Jekyll.logger.info("LiveReload Server:", "#{protocol}://#{@opts['host']}:#{@opts['reload_port']}")
+            Jekyll.logger.info("LiveReload Server:", "#{protocol}://#{@opts['livereload_host']}:#{@opts['reload_port']}")
             EM.start_server(@opts['host'], @opts['reload_port'], HttpAwareConnection, @opts) do |ws|
               ws.onopen do |handshake|
                 connect(ws, handshake)
