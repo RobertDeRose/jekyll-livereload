@@ -2,7 +2,21 @@
 
 [![Gem Version](https://badge.fury.io/rb/jekyll-livereload.svg)](https://badge.fury.io/rb/jekyll-livereload)
 
+
+## DEPRECATION WARNING
+
+With the release of [Jekyll 3.7.0](https://jekyllrb.com/news/2018/01/02/jekyll-3-7-0-released/) Livereload support has been added to the mainline development server.
+With that in mind, this project will no longer be maintained or address opened issues.
+
+## What it does
+
 Adds Livereloading support to Jekyll
+
+## What it is
+
+Jekyll-Livereload is a plugin for the static website tool [Jekyll](https://jekyllrb.com). It adds a new options to the built-in Jekyll `serve` command, `--livereload`.
+
+This plugin will automatically include the [livereload.js](http://livereload.com) file in the head of each page that Jekyll serves. In addition, it starts a websocket server using [eventmachine](https://github.com/eventmachine/eventmachine) that the livereload.js file will connect to.
 
 ## Installation
 
